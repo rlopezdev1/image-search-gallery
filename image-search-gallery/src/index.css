@@ -11,3 +11,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.post-grid-container {
+  align-content: center;
+  display: grid;
+  gap : 15px;
+  grid-column: full-start /full-end;
+  grid-template-columns: repeat(3, minmax(min-content, 1fr));
+  justify-items: center;
+  margin: 0 auto;
+  padding: 30px;
+  width: 100vw;
+}
+
+.post-cards-img-grid {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  transition: all .3s;
+  width: 100%;
+}
+
