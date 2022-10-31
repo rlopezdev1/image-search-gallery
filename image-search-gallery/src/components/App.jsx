@@ -1,11 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import Search from './Search';
+import Header from './Header';
+
+
+const query = "dog";
 
 
 const App = () => {
      const [posts, setPosts] = useState([]);
     useEffect(() => {
-        fetch('https://api.unsplash.com/search/photos?page=1&per_page=10&query=dog&client_id=2gyP-B-dFKjR--xGDsJZxMFIgoExPBHBvXFxY8NeeWU')
+        fetch(`https://api.unsplash.com/search/photos?page=1&per_page=10&query=${query}&client_id=${process.env.REACT_APP_API_KEY}`)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data.results);
@@ -21,13 +25,13 @@ const App = () => {
         
        <div className=''>
          
-         
-
+         <Header />
+        <Search />
              <div className='post-grid-container'>
             {posts.map((post) => {
                 return (
                     <div className='' key={post.id}>
-                        <img className='post-cards-img-grid' src={post.urls.small} alt={post.alt_description}></img>
+                        <img className='post-cards-img-grid' src={post.urls.regular} alt={post.alt_description}></img>
                     
                     </div>
                 )

@@ -5,6 +5,30 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(27, 29, 22);
+}
+
+.Header {
+  background-color:rgb(234, 203, 167);
+  margin: auto -16px;
+  padding: 16px 32px;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.3);
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;;
+}
+
+input {
+  outline: 2px solid whitesmoke;
+  padding: 10px;
+  transition: all .3s;
+  width: 50vw;
+  border: none;
+  border-radius: 5px;
 }
 
 code {
@@ -30,5 +54,11 @@ code {
   object-fit: cover;
   transition: all .3s;
   width: 100%;
+}
+
+.post-cards-img-grid:hover {
+    outline: 3px solid #00ed5f;
+    transform: scale(1.1);
+    cursor: pointer;
 }
 

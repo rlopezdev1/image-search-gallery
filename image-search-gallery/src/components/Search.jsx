@@ -9,7 +9,7 @@ const Search = () => {
 
 
     return (
-        <div className="searchBar">
+        <div className="form">
             <input type="text" maxLength={25} placeholder="Search..."></input>
         </div>
     )
