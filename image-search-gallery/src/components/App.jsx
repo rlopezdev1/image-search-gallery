@@ -12,7 +12,7 @@ const App = () => {
         fetch(`https://api.unsplash.com/search/photos?page=1&per_page=10&query=${query}&client_id=${process.env.REACT_APP_API_KEY}`)
             .then((response) => response.json())
             .then((data) => {
-                console.log(data.results);
+                
                 setPosts(data.results);
             })
             .catch((err) => {
