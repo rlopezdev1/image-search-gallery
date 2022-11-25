@@ -1,50 +1,67 @@
-import React, {useState, useEffect} from 'react';
-import Search from './Search';
-import Header from './Header';
+import React, { useState, useEffect } from 'react';
+import ImageCard from './ImageCard';
+
+import './App.css';
+import SearchIcon from './search.svg'
 
 
-const query = "dog";
+
+
+
+
+
+const API_URL = "https://api.unsplash.com/search/photos?client_id=2gyP-B-dFKjR--xGDsJZxMFIgoExPBHBvXFxY8NeeWU"
 
 
 const App = () => {
-     const [posts, setPosts] = useState([]);
-    useEffect(() => {
-        fetch(`https://api.unsplash.com/search/photos?page=1&per_page=10&query=${query}&client_id=${process.env.REACT_APP_API_KEY}`)
-            .then((response) => response.json())
-            .then((data) => {
-                
-                setPosts(data.results);
-            })
-            .catch((err) => {
-                console.log(err.message);
-            });
-    }, []);
+  const [images, setImages] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
-    return (
-        //... consume here
+  const searchImages = async (title) => {
+    const response = await fetch(`${API_URL}&query=${title}`);
+    const data = await response.json();
+
+    setImages(data.results);
+    
+  
+  }
+  useEffect( () => {
+    searchImages();
+  }, [])
+  
+
+  return (
+    <div className='app'>
+      <h1>Image Search Gallery</h1>
+      <div className='search'>
+        <input
+          placeholder='Search for Images'
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <img
+          src={SearchIcon}
+          alt='search'
+          onClick={() => searchImages(searchTerm)}
+        />
+
+
+      </div>
+
+      <div className='container'>
+        {images.map((image) => (
+          <ImageCard image={image} />
+        ))}
         
-       <div className=''>
-         
-         <Header />
-        <Search />
-             <div className='post-grid-container'>
-            {posts.map((post) => {
-                return (
-                    <div className='' key={post.id}>
-                        <img className='post-cards-img-grid' src={post.urls.regular} alt={post.alt_description}></img>
-                    
-                    </div>
-                )
-            })}
-        </div>
-
-
-       </div>
         
-       
-    );
+      </div>
 
-};
+
+
+    </div>
+  )
+
+}
 
 
 export default App;
